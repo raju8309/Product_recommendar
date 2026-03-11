@@ -1,0 +1,6 @@
+{
+  "collab_weight": 0.6,
+  "content_weight": 0.4,
+  "rating_threshold": 4.0,
+  "top_n": 10
+}
