@@ -10,10 +10,10 @@
 ## 🤖 ML Model Performance
 | Metric   | Score  |
 |----------|--------|
-| RMSE     | 0.8731 |
-| MAE      | 0.6710 |
+| RMSE     | 0.8736 |
+| MAE      | 0.6858 |
 | CV Folds | 5      |
-| Std Dev  | 0.0047 |
+| Std Dev  | 0.0011 |
 
 ## 🛠 Tech Stack
 | Layer    | Tech                                  |
@@ -84,6 +84,6 @@ Top-N Results → cached → returned
 ## 💡 Key Features
 - Hybrid ML engine combining collaborative and content-based filtering
 - TTL caching for fast repeated requests (~50ms cache hits)
-- Startup warmup for users 1-10
+- Startup warmup for users 1-20
 - E-commerce UI with category filters, cart, product detail page
-- 610 user profiles, 9,724 products, 100K+ ratings
+- 6,040 user profiles, 3,883 products, 1M+ ratings

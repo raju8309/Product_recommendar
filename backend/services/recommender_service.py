@@ -9,9 +9,9 @@ BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "..", "saved_models")
 DATA_DIR   = os.path.join(BASE_DIR, "..", "..", "Data", "raw")
 
-# Cache: 610 users, 1 hour TTL
-_rec_cache     = TTLCache(maxsize=610, ttl=3600)
-_similar_cache = TTLCache(maxsize=1000, ttl=3600)
+# Cache: 6040 users, 1 hour TTL
+_rec_cache     = TTLCache(maxsize=6040, ttl=3600)
+_similar_cache = TTLCache(maxsize=4000, ttl=3600)
 
 class RecommenderService:
     def __init__(self):
@@ -36,8 +36,8 @@ class RecommenderService:
         self.movies  = pd.read_csv(f"{DATA_DIR}/movies.csv")
 
     def _warmup(self):
-        # Pre-compute recs for first 10 users so first visitors are instant
-        for uid in range(1, 11):
+        # Pre-compute recs for first 20 users so first visitors are instant
+        for uid in range(1, 21):
             try:
                 result = self._compute_hybrid(uid, 20)
                 _rec_cache[f"{uid}_20"] = result

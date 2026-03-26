@@ -15,33 +15,17 @@ export default function App() {
 
   const handleAddToWatchlist = useCallback((movie) => {
     setWatchlistItems(prev => {
-      if (prev.find(item => item.movieId === movie.movieId)) {
-        return prev;
-      }
-      return [...prev, {
-        ...movie,
-        watched: false,
-        addedToWatchlistDate: new Date().toISOString(),
-        rating: null,
-        notes: '',
-      }];
+      if (prev.find(item => item.movieId === movie.movieId)) return prev;
+      return [...prev, { ...movie, watched: false, addedToWatchlistDate: new Date().toISOString(), rating: null, notes: '' }];
     });
   }, []);
 
   const handleRemoveFromWatchlist = useCallback((movieId) => {
-    setWatchlistItems(prev =>
-      prev.filter(item => item.movieId !== movieId)
-    );
+    setWatchlistItems(prev => prev.filter(item => item.movieId !== movieId));
   }, []);
 
   const handleToggleWatched = useCallback((movieId) => {
-    setWatchlistItems(prev =>
-      prev.map(item =>
-        item.movieId === movieId
-          ? { ...item, watched: !item.watched }
-          : item
-      )
-    );
+    setWatchlistItems(prev => prev.map(item => item.movieId === movieId ? { ...item, watched: !item.watched } : item));
   }, []);
 
   const handleSelectMovie = useCallback((movie) => {
@@ -111,9 +95,7 @@ export default function App() {
       {selectedMovie && (
         <MovieDetail
           movie={selectedMovie}
-          isInWatchlist={watchlistItems.some(
-            item => item.movieId === selectedMovie.movieId
-          )}
+          isInWatchlist={watchlistItems.some(item => item.movieId === selectedMovie.movieId)}
           onClose={handleCloseDetail}
           onAddToWatchlist={handleAddToWatchlist}
           onRemoveFromWatchlist={handleRemoveFromWatchlist}

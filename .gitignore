@@ -1,0 +1,19 @@
+# Python
+product-recommender-env/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Large model files
+backend/saved_models/*.pkl
+
+# Data
+Data/
+
+# React
+frontend/node_modules/
+frontend/build/
+
+# Mac
+.DS_Store
