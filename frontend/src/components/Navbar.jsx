@@ -6,6 +6,7 @@ function Navbar({ cartCount, onCartClick, onLogoClick, onSearch, userId, onUserC
   const [results, setResults] = useState([]);
   const [showUser, setShowUser] = useState(false);
   const [userInput, setUserInput] = useState(String(userId));
+  const [hoveredCart, setHoveredCart] = useState(false);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -35,13 +36,7 @@ function Navbar({ cartCount, onCartClick, onLogoClick, onSearch, userId, onUserC
       </div>
 
       <nav style={s.nav}>
-        <div style={s.logo} onClick={onLogoClick}>REC.AI</div>
-
-        <div style={s.links}>
-          {['Discover', 'Top Rated', 'New Picks', 'Genres'].map(l => (
-            <span key={l} style={s.link}>{l}</span>
-          ))}
-        </div>
+        <div style={s.logo} onClick={onLogoClick}>Movie Recommender</div>
 
         <div style={{ position: 'relative', flex: 1, maxWidth: '480px' }}>
           <div style={s.searchBox}>
@@ -116,7 +111,12 @@ function Navbar({ cartCount, onCartClick, onLogoClick, onSearch, userId, onUserC
             )}
           </div>
 
-          <button style={s.iconBtn} onClick={onCartClick}>
+          <button 
+            style={{...s.iconBtn, background: hoveredCart ? '#f0f0f0' : 'transparent', transition: 'background 0.2s ease'}} 
+            onClick={onCartClick} 
+            onMouseEnter={() => setHoveredCart(true)} 
+            onMouseLeave={() => setHoveredCart(false)}
+          >
             📽️
             {cartCount > 0 && <span style={s.badge}>{cartCount}</span>}
           </button>
@@ -147,14 +147,14 @@ const s = {
   },
   logo: {
     fontFamily: 'Georgia, serif',
-    fontSize: '26px',
+    fontSize: '24px',
     letterSpacing: '1px',
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     fontWeight: '700',
+    color: '#333',
+    transition: 'color 0.2s ease',
   },
-  links: { display: 'flex', gap: '28px', whiteSpace: 'nowrap' },
-  link: { fontSize: '14px', fontWeight: 500, cursor: 'pointer', color: '#333' },
   searchBox: {
     display: 'flex',
     alignItems: 'center',
@@ -189,7 +189,7 @@ const s = {
   },
   icons: { display: 'flex', alignItems: 'center', gap: '4px', marginLeft: 'auto' },
   iconBtn: {
-    background: 'none',
+    background: 'transparent',
     border: 'none',
     fontSize: '18px',
     padding: '8px 10px',
@@ -199,6 +199,7 @@ const s = {
     display: 'flex',
     alignItems: 'center',
     gap: '4px',
+    transition: 'background 0.2s ease',
   },
   badge: {
     position: 'absolute',
